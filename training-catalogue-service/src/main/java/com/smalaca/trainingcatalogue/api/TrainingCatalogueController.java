@@ -17,4 +17,9 @@ public class TrainingCatalogueController {
     public TrainingCatalogueItem getStatus(@PathVariable UUID trainingDraftId) {
         return repository.findById(trainingDraftId).orElseThrow();
     }
+
+    @GetMapping
+    public Iterable<TrainingCatalogueItem> findAll() {
+        return repository.findAll();
+    }
 }

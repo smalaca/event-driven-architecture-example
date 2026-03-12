@@ -17,4 +17,9 @@ public class ReviewController {
     public TrainingReview getReview(@PathVariable UUID trainingDraftId) {
         return repository.findById(trainingDraftId).orElseThrow();
     }
+
+    @GetMapping
+    public Iterable<TrainingReview> findAll() {
+        return repository.findAll();
+    }
 }

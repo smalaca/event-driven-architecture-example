@@ -31,6 +31,11 @@ public class TrainingManagementController {
     public TrainingDraft getStatus(@PathVariable UUID id) {
         return repository.findById(id).orElseThrow();
     }
+
+    @GetMapping
+    public Iterable<TrainingDraft> findAll() {
+        return repository.findAll();
+    }
 }
 
 record TrainingDraftRequest(String title, String description) { }

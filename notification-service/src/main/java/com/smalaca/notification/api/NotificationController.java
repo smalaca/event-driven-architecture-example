@@ -18,4 +18,9 @@ public class NotificationController {
     public List<SentEmail> getSentEmails(@PathVariable UUID trainingDraftId) {
         return repository.findByTrainingDraftId(trainingDraftId);
     }
+
+    @GetMapping
+    public Iterable<SentEmail> findAll() {
+        return repository.findAll();
+    }
 }

@@ -50,8 +50,14 @@ This project demonstrates an event-driven architecture using Spring Boot, Kafka,
    ```
    *Note the returned UUID.*
 
-2. **Verify statuses**:
+2.A. **Verify statuses of single draft**:
    - Training Management: `GET http://localhost:8081/training-drafts/{id}` -> Should be `REJECTED: Title contains REJECT`
    - Review Service: `GET http://localhost:8082/reviews/{id}` -> Should be `REJECTED`
    - Training Catalogue: `GET http://localhost:8083/trainings/{id}` -> Should be `REJECTED`
    - Notification Service: `GET http://localhost:8084/notifications/{id}` -> Should show 2 emails (Submitted, Rejected)
+
+2.B. **Verify statuses of all drafts**:
+  - Training Management: `GET http://localhost:8081/training-drafts`
+  - Review Service: `GET http://localhost:8082/reviews`
+  - Training Catalogue: `GET http://localhost:8083/trainings`
+  - Notification Service: `GET http://localhost:8084/notifications`

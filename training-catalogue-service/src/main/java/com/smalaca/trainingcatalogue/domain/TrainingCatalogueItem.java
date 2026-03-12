@@ -16,5 +16,4 @@ public class TrainingCatalogueItem {
     @Id
     private UUID trainingDraftId;
     private String title;
-    private String status;
 }

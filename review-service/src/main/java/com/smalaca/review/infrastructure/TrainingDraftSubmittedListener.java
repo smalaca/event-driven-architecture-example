@@ -22,9 +22,9 @@ public class TrainingDraftSubmittedListener {
         if (event.title().toUpperCase().contains("REJECT")) {
             TrainingReview review = new TrainingReview(event.trainingDraftId(), "REJECTED", "Title contains REJECT");
             repository.save(review);
-            kafkaTemplate.send("training-draft-rejected", new TrainingDraftRejected(event.trainingDraftId(), "Title contains REJECT"));
+            kafkaTemplate.send("training-draft-rejected", new TrainingDraftRejected(event.trainingDraftId(), "Rejected " + event.title()));
         } else {
-            TrainingReview review = new TrainingReview(event.trainingDraftId(), "APPROVED", null);
+            TrainingReview review = new TrainingReview(event.trainingDraftId(), "APPROVED", "High quality content of " + event.title());
             repository.save(review);
             kafkaTemplate.send("training-draft-approved", new TrainingDraftApproved(event.trainingDraftId()));
         }
