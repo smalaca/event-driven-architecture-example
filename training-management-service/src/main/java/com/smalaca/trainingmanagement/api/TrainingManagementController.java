@@ -3,7 +3,6 @@ package com.smalaca.trainingmanagement.api;
 import com.smalaca.shared.events.TrainingDraftSubmitted;
 import com.smalaca.trainingmanagement.domain.TrainingDraft;
 import com.smalaca.trainingmanagement.domain.TrainingDraftRepository;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -20,10 +19,10 @@ public class TrainingManagementController {
     @PostMapping
     public UUID submit(@RequestBody TrainingDraftRequest request) {
         UUID id = UUID.randomUUID();
-        TrainingDraft trainingDraft = new TrainingDraft(id, request.getTitle(), request.getDescription(), "SUBMITTED");
+        TrainingDraft trainingDraft = new TrainingDraft(id, request.title(), request.description(), "SUBMITTED");
         repository.save(trainingDraft);
 
-        kafkaTemplate.send("training-draft-submitted", new TrainingDraftSubmitted(id, request.getTitle(), request.getDescription()));
+        kafkaTemplate.send("training-draft-submitted", new TrainingDraftSubmitted(id, request.title(), request.description()));
 
         return id;
     }
@@ -34,8 +33,4 @@ public class TrainingManagementController {
     }
 }
 
-@Data
-class TrainingDraftRequest {
-    private String title;
-    private String description;
-}
+record TrainingDraftRequest(String title, String description) { }

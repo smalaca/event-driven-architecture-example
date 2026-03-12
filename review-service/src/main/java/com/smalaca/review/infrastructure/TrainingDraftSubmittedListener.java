@@ -19,14 +19,14 @@ public class TrainingDraftSubmittedListener {
     @KafkaListener(topics = "training-draft-submitted", groupId = "review-group")
     public void onSubmitted(TrainingDraftSubmitted event) {
         // Dummy logic: reject if title contains "REJECT", otherwise approve
-        if (event.getTitle().toUpperCase().contains("REJECT")) {
-            TrainingReview review = new TrainingReview(event.getTrainingDraftId(), "REJECTED", "Title contains REJECT");
+        if (event.title().toUpperCase().contains("REJECT")) {
+            TrainingReview review = new TrainingReview(event.trainingDraftId(), "REJECTED", "Title contains REJECT");
             repository.save(review);
-            kafkaTemplate.send("training-draft-rejected", new TrainingDraftRejected(event.getTrainingDraftId(), "Title contains REJECT"));
+            kafkaTemplate.send("training-draft-rejected", new TrainingDraftRejected(event.trainingDraftId(), "Title contains REJECT"));
         } else {
-            TrainingReview review = new TrainingReview(event.getTrainingDraftId(), "APPROVED", null);
+            TrainingReview review = new TrainingReview(event.trainingDraftId(), "APPROVED", null);
             repository.save(review);
-            kafkaTemplate.send("training-draft-approved", new TrainingDraftApproved(event.getTrainingDraftId()));
+            kafkaTemplate.send("training-draft-approved", new TrainingDraftApproved(event.trainingDraftId()));
         }
     }
 }

@@ -19,22 +19,22 @@ public class NotificationEventListener {
 
     @KafkaListener(topics = "training-draft-submitted", groupId = "notification-group")
     public void onSubmitted(TrainingDraftSubmitted event) {
-        sendEmail(event.getTrainingDraftId(), "Training Draft Submitted: " + event.getTitle());
+        sendEmail(event.trainingDraftId(), "Training Draft Submitted: " + event.title());
     }
 
     @KafkaListener(topics = "training-draft-approved", groupId = "notification-group")
     public void onApproved(TrainingDraftApproved event) {
-        sendEmail(event.getTrainingDraftId(), "Training Draft Approved");
+        sendEmail(event.trainingDraftId(), "Training Draft Approved");
     }
 
     @KafkaListener(topics = "training-draft-rejected", groupId = "notification-group")
     public void onRejected(TrainingDraftRejected event) {
-        sendEmail(event.getTrainingDraftId(), "Training Draft Rejected: " + event.getReason());
+        sendEmail(event.trainingDraftId(), "Training Draft Rejected: " + event.reason());
     }
 
     @KafkaListener(topics = "training-published", groupId = "notification-group")
     public void onPublished(TrainingPublished event) {
-        sendEmail(event.getTrainingDraftId(), "Training Published: " + event.getTitle());
+        sendEmail(event.trainingDraftId(), "Training Published: " + event.title());
     }
 
     private void sendEmail(java.util.UUID trainingDraftId, String subject) {

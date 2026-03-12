@@ -15,7 +15,7 @@ public class TrainingDraftReviewListener {
 
     @KafkaListener(topics = "training-draft-approved", groupId = "training-management-group")
     public void onApproved(TrainingDraftApproved event) {
-        repository.findById(event.getTrainingDraftId()).ifPresent(trainingDraft -> {
+        repository.findById(event.trainingDraftId()).ifPresent(trainingDraft -> {
             trainingDraft.setStatus("APPROVED");
             repository.save(trainingDraft);
         });
@@ -23,8 +23,8 @@ public class TrainingDraftReviewListener {
 
     @KafkaListener(topics = "training-draft-rejected", groupId = "training-management-group")
     public void onRejected(TrainingDraftRejected event) {
-        repository.findById(event.getTrainingDraftId()).ifPresent(trainingDraft -> {
-            trainingDraft.setStatus("REJECTED: " + event.getReason());
+        repository.findById(event.trainingDraftId()).ifPresent(trainingDraft -> {
+            trainingDraft.setStatus("REJECTED: " + event.reason());
             repository.save(trainingDraft);
         });
     }

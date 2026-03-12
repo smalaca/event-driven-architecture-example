@@ -19,13 +19,13 @@ public class TrainingCatalogueEventListener {
 
     @KafkaListener(topics = "training-draft-submitted", groupId = "catalogue-group")
     public void onSubmitted(TrainingDraftSubmitted event) {
-        TrainingCatalogueItem item = new TrainingCatalogueItem(event.getTrainingDraftId(), event.getTitle(), "SUBMITTED");
+        TrainingCatalogueItem item = new TrainingCatalogueItem(event.trainingDraftId(), event.title(), "SUBMITTED");
         repository.save(item);
     }
 
     @KafkaListener(topics = "training-draft-approved", groupId = "catalogue-group")
     public void onApproved(TrainingDraftApproved event) {
-        repository.findById(event.getTrainingDraftId()).ifPresent(item -> {
+        repository.findById(event.trainingDraftId()).ifPresent(item -> {
             item.setStatus("APPROVED");
             repository.save(item);
             kafkaTemplate.send("training-published", new TrainingPublished(item.getTrainingDraftId(), item.getTitle()));
@@ -34,7 +34,7 @@ public class TrainingCatalogueEventListener {
 
     @KafkaListener(topics = "training-draft-rejected", groupId = "catalogue-group")
     public void onRejected(TrainingDraftRejected event) {
-        repository.findById(event.getTrainingDraftId()).ifPresent(item -> {
+        repository.findById(event.trainingDraftId()).ifPresent(item -> {
             item.setStatus("REJECTED");
             repository.save(item);
         });
@@ -42,7 +42,7 @@ public class TrainingCatalogueEventListener {
 
     @KafkaListener(topics = "training-published", groupId = "catalogue-group")
     public void onPublished(TrainingPublished event) {
-        repository.findById(event.getTrainingDraftId()).ifPresent(item -> {
+        repository.findById(event.trainingDraftId()).ifPresent(item -> {
             item.setStatus("PUBLISHED");
             repository.save(item);
         });
