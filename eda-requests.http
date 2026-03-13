@@ -4,7 +4,8 @@ Content-Type: application/json
 
 {
   "title": "Event-Driven Architecture",
-  "description": "Advanced Event-Driven Architecture course"
+  "description": "Advanced Event-Driven Architecture course",
+  "price": "238.45"
 }
 
 ###
