@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -16,4 +17,6 @@ public class TrainingCatalogueItem {
     @Id
     private UUID trainingDraftId;
     private String title;
+    private String description;
+    private BigDecimal price;
 }

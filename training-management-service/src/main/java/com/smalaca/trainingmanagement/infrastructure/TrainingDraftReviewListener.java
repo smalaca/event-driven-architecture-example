@@ -20,7 +20,7 @@ public class TrainingDraftReviewListener {
         repository.findById(event.trainingDraftId()).ifPresent(trainingDraft -> {
             trainingDraft.setStatus("APPROVED");
             repository.save(trainingDraft);
-            kafkaTemplate.send("training-published", new TrainingPublished(trainingDraft.getId(), trainingDraft.getTitle()));
+            kafkaTemplate.send("training-published", new TrainingPublished(trainingDraft.getId(), trainingDraft.getTitle(), trainingDraft.getDescription(), trainingDraft.getPrice()));
         });
     }
 

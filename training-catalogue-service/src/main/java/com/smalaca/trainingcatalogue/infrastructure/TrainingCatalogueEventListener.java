@@ -14,7 +14,7 @@ public class TrainingCatalogueEventListener {
 
     @KafkaListener(topics = "training-published", groupId = "catalogue-group")
     public void onPublished(TrainingPublished event) {
-        TrainingCatalogueItem item = new TrainingCatalogueItem(event.trainingDraftId(), event.title());
+        TrainingCatalogueItem item = new TrainingCatalogueItem(event.trainingDraftId(), event.title(), event.description(), event.price());
         repository.save(item);
     }
 }
