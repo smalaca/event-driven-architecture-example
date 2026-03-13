@@ -1,0 +1,20 @@
+###
+POST http://localhost:8081/training-drafts
+Content-Type: application/json
+
+{
+  "title": "Event-Driven Architecture",
+  "description": "Advanced Event-Driven Architecture course"
+}
+
+###
+GET http://localhost:8081/training-drafts
+
+###
+GET http://localhost:8083/trainings
+
+###
+GET http://localhost:8082/reviews
+
+###
+GET http://localhost:8084/notifications
