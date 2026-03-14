@@ -19,45 +19,45 @@ This project demonstrates an event-driven architecture using Spring Boot, Kafka,
    ```
 
 ## Services and Ports
-- **Training Management Service**: http://localhost:8081
+- **Application Management Service**: http://localhost:8081
 - **Review Service**: http://localhost:8082
-- **Training Catalogue Service**: http://localhost:8083
+- **Application Catalogue Service**: http://localhost:8083
 - **Notification Service**: http://localhost:8084
 
 ## Scenarios
 
 ### Sunny Day Scenario (Approval)
-1. **Submit a training draft**:
+1. **Submit an application draft**:
    ```bash
-   curl -X POST http://localhost:8081/training-drafts \
+   curl -X POST http://localhost:8081/application-drafts \
    -H "Content-Type: application/json" \
    -d '{"title": "Spring Boot Expert", "description": "Advanced Spring Boot course"}'
    ```
    *Note: This will return a UUID (e.g., `550e8400-e29b-41d4-a716-446655440000`). Use it in the following steps.*
 
 2. **Verify statuses**:
-   - Training Management: `GET http://localhost:8081/training-drafts/{id}` -> Should be `APPROVED`
+   - Application Management: `GET http://localhost:8081/application-drafts/{id}` -> Should be `APPROVED`
    - Review Service: `GET http://localhost:8082/reviews/{id}` -> Should be `APPROVED`
-   - Training Catalogue: `GET http://localhost:8083/trainings/{id}` -> Should be `PUBLISHED`
+   - Application Catalogue: `GET http://localhost:8083/applications/{id}` -> Should be `PUBLISHED`
    - Notification Service: `GET http://localhost:8084/notifications/{id}` -> Should show 4 emails (Submitted, Approved, Published)
 
 ### Rainy Day Scenario (Rejection)
-1. **Submit a training draft with "REJECT" in the title**:
+1. **Submit an application draft with "REJECT" in the title**:
    ```bash
-   curl -X POST http://localhost:8081/training-drafts \
+   curl -X POST http://localhost:8081/application-drafts \
    -H "Content-Type: application/json" \
    -d '{"title": "REJECT this course", "description": "This should fail"}'
    ```
    *Note the returned UUID.*
 
 2.A. **Verify statuses of single draft**:
-   - Training Management: `GET http://localhost:8081/training-drafts/{id}` -> Should be `REJECTED: Title contains REJECT`
+   - Application Management: `GET http://localhost:8081/application-drafts/{id}` -> Should be `REJECTED: Title contains REJECT`
    - Review Service: `GET http://localhost:8082/reviews/{id}` -> Should be `REJECTED`
-   - Training Catalogue: `GET http://localhost:8083/trainings/{id}` -> Should be `REJECTED`
+   - Application Catalogue: `GET http://localhost:8083/applications/{id}` -> Should be `REJECTED`
    - Notification Service: `GET http://localhost:8084/notifications/{id}` -> Should show 2 emails (Submitted, Rejected)
 
 2.B. **Verify statuses of all drafts**:
-  - Training Management: `GET http://localhost:8081/training-drafts`
+  - Application Management: `GET http://localhost:8081/application-drafts`
   - Review Service: `GET http://localhost:8082/reviews`
-  - Training Catalogue: `GET http://localhost:8083/trainings`
+  - Application Catalogue: `GET http://localhost:8083/applications`
   - Notification Service: `GET http://localhost:8084/notifications`

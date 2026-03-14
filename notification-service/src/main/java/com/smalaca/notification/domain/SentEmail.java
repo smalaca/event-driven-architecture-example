@@ -18,13 +18,13 @@ public class SentEmail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private UUID trainingDraftId;
+    private UUID applicationDraftId;
     private String recipient;
     private String subject;
     private String content;
 
-    public SentEmail(UUID trainingDraftId, String recipient, String subject, String content) {
-        this.trainingDraftId = trainingDraftId;
+    public SentEmail(UUID applicationDraftId, String recipient, String subject, String content) {
+        this.applicationDraftId = applicationDraftId;
         this.recipient = recipient;
         this.subject = subject;
         this.content = content;

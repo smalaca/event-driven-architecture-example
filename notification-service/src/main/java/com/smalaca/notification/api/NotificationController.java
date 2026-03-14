@@ -14,9 +14,9 @@ import java.util.UUID;
 public class NotificationController {
     private final SentEmailRepository repository;
 
-    @GetMapping("/{trainingDraftId}")
-    public List<SentEmail> getSentEmails(@PathVariable UUID trainingDraftId) {
-        return repository.findByTrainingDraftId(trainingDraftId);
+    @GetMapping("/{applicationDraftId}")
+    public List<SentEmail> getSentEmails(@PathVariable UUID applicationDraftId) {
+        return repository.findByApplicationDraftId(applicationDraftId);
     }
 
     @GetMapping

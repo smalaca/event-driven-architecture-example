@@ -5,5 +5,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface SentEmailRepository extends CrudRepository<SentEmail, Long> {
-    List<SentEmail> findByTrainingDraftId(UUID trainingDraftId);
+    List<SentEmail> findByApplicationDraftId(UUID applicationDraftId);
 }

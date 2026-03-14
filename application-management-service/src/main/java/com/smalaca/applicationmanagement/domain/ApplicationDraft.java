@@ -1,0 +1,23 @@
+package com.smalaca.applicationmanagement.domain;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+import java.util.UUID;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ApplicationDraft {
+    @Id
+    private UUID id;
+    private String title;
+    private String description;
+    private BigDecimal price;
+    private String status;
+}

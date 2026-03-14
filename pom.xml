@@ -13,7 +13,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.3</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <properties>
@@ -23,9 +23,9 @@
 
     <modules>
         <module>shared</module>
-        <module>training-management-service</module>
+        <module>application-management-service</module>
         <module>review-service</module>
-        <module>training-catalogue-service</module>
+        <module>application-catalogue-service</module>
         <module>notification-service</module>
     </modules>
 

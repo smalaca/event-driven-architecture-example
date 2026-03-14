@@ -1,18 +1,18 @@
 ###
-POST http://localhost:8081/training-drafts
+POST http://localhost:8081/application-drafts
 Content-Type: application/json
 
 {
-  "title": "Event-Driven Architecture",
-  "description": "Advanced Event-Driven Architecture course",
+  "title": "Event-Driven Architecture Game",
+  "description": "Not so easy Event-Driven Architecture Game",
   "price": "238.45"
 }
 
 ###
-GET http://localhost:8081/training-drafts
+GET http://localhost:8081/application-drafts
 
 ###
-GET http://localhost:8083/trainings
+GET http://localhost:8083/applications
 
 ###
 GET http://localhost:8082/reviews

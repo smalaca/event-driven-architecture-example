@@ -1,7 +1,7 @@
 package com.smalaca.review.api;
 
-import com.smalaca.review.domain.TrainingReview;
-import com.smalaca.review.domain.TrainingReviewRepository;
+import com.smalaca.review.domain.ApplicationReview;
+import com.smalaca.review.domain.ApplicationReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,15 +11,15 @@ import java.util.UUID;
 @RequestMapping("/reviews")
 @RequiredArgsConstructor
 public class ReviewController {
-    private final TrainingReviewRepository repository;
+    private final ApplicationReviewRepository repository;
 
-    @GetMapping("/{trainingDraftId}")
-    public TrainingReview getReview(@PathVariable UUID trainingDraftId) {
-        return repository.findById(trainingDraftId).orElseThrow();
+    @GetMapping("/{applicationDraftId}")
+    public ApplicationReview getReview(@PathVariable UUID applicationDraftId) {
+        return repository.findById(applicationDraftId).orElseThrow();
     }
 
     @GetMapping
-    public Iterable<TrainingReview> findAll() {
+    public Iterable<ApplicationReview> findAll() {
         return repository.findAll();
     }
 }
